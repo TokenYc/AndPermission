@@ -17,6 +17,7 @@ package com.yanzhenjie.permission.checker;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -35,10 +36,15 @@ class PhoneStateReadTest implements PermissionTest {
     public boolean test() throws Throwable {
         PackageManager packageManager = mContext.getPackageManager();
         if (!packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) return true;
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+            TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+            return telephonyManager.getPhoneType() == TelephonyManager.PHONE_TYPE_NONE ||
+                    !TextUtils.isEmpty(telephonyManager.getDeviceId()) ||
+                    !TextUtils.isEmpty(telephonyManager.getSubscriberId());
+        } else {
+            return true;
+        }
 
-        TelephonyManager telephonyManager = (TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
-        return telephonyManager.getPhoneType() == TelephonyManager.PHONE_TYPE_NONE ||
-            !TextUtils.isEmpty(telephonyManager.getDeviceId()) ||
-            !TextUtils.isEmpty(telephonyManager.getSubscriberId());
+
     }
 }
