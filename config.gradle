@@ -11,27 +11,4 @@ ext {
                targetSdkVersion : 28,
                versionCode      : 106,
                versionName      : "2.0.1"]
-
-    bintray = [version       : "2.0.1",
-
-               siteUrl       : 'https://github.com/yanzhenjie/AndPermission',
-               gitUrl        : 'https://github.com/yanzhenjie/AndPermission.git',
-
-               group         : "com.yanzhenjie.permission",
-
-               packaging     : 'aar',
-               name          : 'Permission',
-               description   : 'Permission manager for Android',
-
-               licenseName   : 'The Apache Software License, Version 2.0',
-               licenseUrl    : 'http://www.apache.org/licenses/LICENSE-2.0.txt',
-
-               developerId   : 'yanzhenjie',
-               developerName : 'yanzhenjie',
-               developerEmail: 'im.yanzhenjie@gmail.com',
-
-               binrayLibrary : "",
-               bintrayRepo   : "maven",
-               bintrayUser   : 'yolanda',
-               bintrayLicense: "Apache-2.0"]
 }
